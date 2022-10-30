@@ -47,7 +47,13 @@
             }
         }
 
-        function addTodoList (todo) {
+        function removeTodoList(index){
+            console.info(`remove ${index}`)
+            todoList.splice(index, 1);
+            displayTodoList();
+        }
+
+        function addTodoList (index, todo) {
             const tr = document.createElement("tr");
                const tdButton = document.createElement("td");
                tr.appendChild(tdButton);
@@ -55,6 +61,9 @@
                const doneButton = document.createElement("input");
                doneButton.type="button";
                doneButton.value="Done";
+               doneButton.onclick = function (){
+                removeTodoList(index);
+               };
                tdButton.appendChild(doneButton);
 
                const tdTodo = document.createElement("td");
@@ -74,7 +83,7 @@
                const searchText = document.getElementById("search").value.toLowerCase();
 
                if(todo.toLowerCase().includes(searchText)){
-                addTodoList(todo);
+                addTodoList(i, todo);
                }
             }
         }
